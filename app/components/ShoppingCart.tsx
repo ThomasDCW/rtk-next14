@@ -1,14 +1,22 @@
 "use client";
-import { useAppSelector } from "../lib/hook";
+import { reset } from "../lib/features/shoppingCart/shoppingCartSlice";
+import { useAppDispatch, useAppSelector } from "../lib/hook";
+import ProductQuantityInput from "./QuantityInput";
 
 export default function ShoppingCart() {
+  const dispatch = useAppDispatch();
   const products = useAppSelector(
     (state) => state.shoppingCartReducer.products
   );
-  console.log(products);
+  console.log("product=>", products);
+
+  const totalPrice = products.reduce(
+    (total, product) => total + product.price,
+    0
+  );
 
   return (
-    <div className="block max-w-xl w-72 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <div className="block w-96 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <div className="flex justify-around">
         <p className="m-2">Panier</p>
         <svg
@@ -27,6 +35,33 @@ export default function ShoppingCart() {
           />
         </svg>
       </div>
+      {products.length === 0 ? (
+        <p className="m-2">Votre panier est vide</p>
+      ) : (
+        <ul>
+          {products.map((product) => (
+            <li
+              key={product.id}
+              className="flex justify-between items-center p-2 border-b border-gray-200 dark:border-gray-700"
+            >
+              <span>{product.title}</span>
+              <span>
+                <ProductQuantityInput quantity={product.quantity!} />
+              </span>
+              <span>{product.price} €</span>
+            </li>
+          ))}
+          <li className="font-bold text-right mt-4">total : {totalPrice} €</li>
+        </ul>
+      )}
+      {products.length === 0 ? null : (
+        <button
+          onClick={() => dispatch(reset())}
+          className="w-full p-2 mt-4 bg-red-500 text-white rounded-lg hover:bg-red-600 dark:bg-red-700 dark:hover:bg-red-800"
+        >
+          vider le panier
+        </button>
+      )}
     </div>
   );
 }

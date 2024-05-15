@@ -4,6 +4,7 @@ export type Product = {
   id: string;
   title: string;
   price: number;
+  quantity?: number;
 };
 
 type ShoppingCartState = {
@@ -19,16 +20,33 @@ const shoppingCartSlice = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
-    add: (state, action: PayloadAction<Product>) => {
-      state.products.push(action.payload);
+    addOrUpdate: (state, action: PayloadAction<Product>) => {
+      const existingProductIndex = state.products.findIndex(
+        ({ title }) => title === action.payload.title
+      );
+      if (existingProductIndex !== -1) {
+        state.products[existingProductIndex].quantity! += 1;
+        state.products[existingProductIndex].price += action.payload.price;
+      } else {
+        state.products.push({ ...action.payload, quantity: 1 });
+      }
     },
     remove: (state, action: PayloadAction<string>) => {
       state.products = state.products.filter(({ id }) => id !== action.payload);
     },
+    updateQuantity: (
+      state,
+      action: PayloadAction<{ productId: string; quantity: number }>
+    ) => {
+      const { productId, quantity } = action.payload;
+      const productToUpdate = state.products.find(({ id }) => id === productId);
+      if (productToUpdate) {
+        productToUpdate.quantity = quantity;
+      }
+    },
   },
 });
-console.log(shoppingCartSlice.getInitialState());
 
-export const { add, remove, reset } = shoppingCartSlice.actions;
+export const { addOrUpdate, remove, reset } = shoppingCartSlice.actions;
 
 export default shoppingCartSlice.reducer;
