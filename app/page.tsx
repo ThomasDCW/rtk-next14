@@ -1,7 +1,6 @@
-import Image from "next/image";
 import ProductCard from "./components/ProductCard";
-import { randomUUID } from "crypto";
 import ShoppingCart from "./components/ShoppingCart";
+import { randomUUID } from "crypto";
 
 const products = [
   {
