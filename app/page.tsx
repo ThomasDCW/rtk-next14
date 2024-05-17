@@ -1,6 +1,8 @@
+import { auth } from "./auth";
 import ProductCard from "./components/ProductCard";
 import ShoppingCart from "./components/ShoppingCart";
-import { randomUUID } from "crypto";
+import { randomUUID, Sign } from "crypto";
+import { SignIn, SignOut } from "./components/AuthButtons";
 
 const products = [
   {
@@ -20,17 +22,30 @@ const products = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
   return (
-    <main className="flex min-h-screen flex-col items-center">
-      <div className="p-24 flex">
-        {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
-        ))}
-      </div>
-      <div>
-        <ShoppingCart />
-      </div>
-    </main>
+    <>
+      {session?.user ? (
+        <main className="flex min-h-screen flex-col items-center">
+          <h1 className="text-2xl font-bold mt-6 mb-6">
+            Bienvenue {session.user.name}
+          </h1>
+          <div className="p-16 flex">
+            {products.map((product) => (
+              <ProductCard key={product.id} {...product} />
+            ))}
+          </div>
+          <div>
+            <ShoppingCart />
+          </div>
+          <SignOut />
+        </main>
+      ) : (
+        <main className="flex min-h-screen flex-col items-center">
+          <SignIn />
+        </main>
+      )}
+    </>
   );
 }

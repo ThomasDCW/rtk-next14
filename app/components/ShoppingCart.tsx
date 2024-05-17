@@ -36,7 +36,7 @@ export default function ShoppingCart() {
         </svg>
       </div>
       {products.length === 0 ? (
-        <p className="m-2">Votre panier est vide</p>
+        <p className="m-2 text-center">Votre panier est vide</p>
       ) : (
         <ul>
           {products.map((product) => (
