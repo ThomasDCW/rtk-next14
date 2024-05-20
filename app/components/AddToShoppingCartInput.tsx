@@ -2,20 +2,18 @@
 import { v4 as uuidv4 } from "uuid";
 import { FormEvent } from "react";
 import { useAppDispatch } from "../lib/hook";
-import {
-  addToCart,
-  Product,
-} from "../lib/features/shoppingCart/shoppingCartSlice";
+import { addToCart } from "../lib/features/shoppingCart/shoppingCartSlice";
+import { Product } from "@prisma/client";
 
 export default function AddToShoppingCartInput({
+  id,
   title,
   price,
-}: Pick<Product, "title" | "price">) {
+}: Pick<Product, "id" | "title" | "price">) {
   const dispatch = useAppDispatch();
   const handleAddToShoppingCart = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Add to shopping cart");
-    dispatch(addToCart({ id: uuidv4(), price, title }));
+    dispatch(addToCart({ id, price, title }));
   };
 
   return (

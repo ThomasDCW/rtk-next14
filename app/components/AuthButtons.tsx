@@ -26,7 +26,7 @@ export function SignOut() {
         "use server";
         await signOut();
       }}
-      className="absolute top-0 right-0 mt-4 mr-4"
+      className="absolute top-0 left-0 mt-4 ml-4"
     >
       <button
         type="submit"

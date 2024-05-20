@@ -1,29 +1,23 @@
 import { auth } from "./auth";
 import ProductCard from "./components/ProductCard";
 import ShoppingCart from "./components/ShoppingCart";
-import { randomUUID, Sign } from "crypto";
-import { SignIn, SignOut } from "./components/AuthButtons";
 
-const products = [
-  {
-    id: randomUUID(),
-    title: "Produit 1",
-    price: 99.0,
-  },
-  {
-    id: randomUUID(),
-    title: "Produit 2",
-    price: 199.0,
-  },
-  {
-    id: randomUUID(),
-    title: "Produit 3",
-    price: 299.0,
-  },
-];
+import { SignIn, SignOut } from "./components/AuthButtons";
+import { Product } from "@prisma/client";
+
+async function getData() {
+  const res = await fetch("http://localhost:3000/api/products");
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json() as Promise<Product[]>;
+}
 
 export default async function Home() {
   const session = await auth();
+  const products = await getData();
+  console.log(products);
+
   return (
     <>
       {session?.user ? (
@@ -31,7 +25,7 @@ export default async function Home() {
           <h1 className="text-2xl font-bold mt-6 mb-6">
             Bienvenue {session.user.name}
           </h1>
-          <div className="p-16 flex">
+          <div className="p-16 flex flex-wrap justify-around">
             {products.map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}

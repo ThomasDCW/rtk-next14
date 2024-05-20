@@ -8,7 +8,6 @@ export default function ShoppingCart() {
   const products = useAppSelector(
     (state) => state.shoppingCartReducer.products
   );
-  console.log("product=>", products);
 
   const totalPrice = products.reduce(
     (total, product) => total + product.price,

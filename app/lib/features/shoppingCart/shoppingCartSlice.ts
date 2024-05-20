@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type Product = {
-  id: string;
+  id: number;
   title: string;
   price: number;
   quantity?: number;
@@ -34,12 +34,14 @@ const shoppingCartSlice = createSlice({
     },
 
     remove: (state, action: PayloadAction<string>) => {
-      state.products = state.products.filter(({ id }) => id !== action.payload);
+      state.products = state.products.filter(
+        ({ id }) => id.toString() !== action.payload
+      );
     },
 
     updateQuantity: (
       state,
-      action: PayloadAction<{ productId: string; quantity: number }>
+      action: PayloadAction<{ productId: number; quantity: number }>
     ) => {
       const { productId, quantity } = action.payload;
       const productToUpdate = state.products.find(({ id }) => id === productId);
