@@ -6,6 +6,19 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+model Product {
+  id                 Int      @id @default(autoincrement())
+  title              String
+  description        String
+  price              Float
+  discountPercentage Float
+  rating             Float
+  stock              Int
+  brand              String
+  category           String
+  thumbnail          String
+  image              String
+}
  
 model User {
   id            String          @id @default(cuid())
@@ -15,9 +28,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  // Optional for WebAuthn support
   Authenticator Authenticator[]
- 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

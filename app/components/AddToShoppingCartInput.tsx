@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { FormEvent } from "react";
 import { useAppDispatch } from "../lib/hook";
 import {
-  addOrUpdate,
+  addToCart,
   Product,
 } from "../lib/features/shoppingCart/shoppingCartSlice";
 
@@ -15,7 +15,7 @@ export default function AddToShoppingCartInput({
   const handleAddToShoppingCart = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("Add to shopping cart");
-    dispatch(addOrUpdate({ id: uuidv4(), price, title }));
+    dispatch(addToCart({ id: uuidv4(), price, title }));
   };
 
   return (
