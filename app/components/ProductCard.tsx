@@ -1,6 +1,7 @@
 import { UUID } from "crypto";
 import AddToShoppingCartInput from "./AddToShoppingCartInput";
 import { Product } from "@prisma/client";
+import Link from "next/link";
 
 export default function ProductCard({
   id,
@@ -11,15 +12,15 @@ export default function ProductCard({
   console.log("ProductCard", id, title, price, image);
   return (
     <div className="m-2 flex flex-col justify-between bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
+      <Link href={`/product/${id}`}>
         <img className="p-8 rounded-t-lg" src={image} alt="product image" />
-      </a>
+      </Link>
       <div className="px-5 pb-5">
-        <a href="#">
+        <Link href={`/product/${id}`}>
           <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
             {title}
           </h5>
-        </a>
+        </Link>
         <div className="flex items-center mt-2.5 mb-5">
           <div className="flex items-center space-x-1 rtl:space-x-reverse">
             <svg

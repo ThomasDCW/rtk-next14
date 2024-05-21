@@ -15,7 +15,6 @@ async function getData() {
 export default async function Home() {
   const session = await auth();
   const products = await getData();
-  console.log(products);
 
   return (
     <>
