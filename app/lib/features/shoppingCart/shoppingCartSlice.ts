@@ -32,26 +32,9 @@ const shoppingCartSlice = createSlice({
         state.products.push({ ...action.payload, quantity: 1 });
       }
     },
-
-    remove: (state, action: PayloadAction<string>) => {
-      state.products = state.products.filter(
-        ({ id }) => id.toString() !== action.payload
-      );
-    },
-
-    updateQuantity: (
-      state,
-      action: PayloadAction<{ productId: number; quantity: number }>
-    ) => {
-      const { productId, quantity } = action.payload;
-      const productToUpdate = state.products.find(({ id }) => id === productId);
-      if (productToUpdate) {
-        productToUpdate.quantity = quantity;
-      }
-    },
   },
 });
 
-export const { addToCart, remove, reset } = shoppingCartSlice.actions;
+export const { addToCart, reset } = shoppingCartSlice.actions;
 
 export default shoppingCartSlice.reducer;

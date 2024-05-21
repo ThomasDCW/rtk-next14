@@ -346,6 +346,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 </div>
 
                 <hr className="mt-6 border-gray-200 sm:mt-8" />
+                <section>
+                  <p className="mt-4 text-gray-700">{product.description}</p>
+                </section>
               </div>
             </div>
           </div>

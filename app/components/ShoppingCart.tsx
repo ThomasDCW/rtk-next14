@@ -55,11 +55,11 @@ export default function ShoppingCart() {
                   key={product.id}
                   className="flex justify-between items-center p-2 border-b border-gray-200 dark:border-gray-700"
                 >
-                  <span>{product.title}</span>
-                  <span>
+                  <span className="w-1/2">{product.title}</span>
+                  <span className="w-1/3 text-end">
                     <ProductQuantityInput quantity={product.quantity!} />
                   </span>
-                  <span>{product.price} €</span>
+                  <span className="w-1/3 text-end">{product.price} €</span>
                 </li>
               ))}
               <li className="font-bold text-right mt-4">
