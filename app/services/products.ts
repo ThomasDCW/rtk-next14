@@ -6,13 +6,13 @@ export const productsApi = createApi({
   tagTypes: [],
 
   endpoints: (builder) => ({
-    getProducts: builder.query({
+    getProducts: builder.query<Product[], any>({
       query: () => "",
     }),
     getProductById: builder.query({
       query: () => "",
-      transformResponse: (baseQueryReturnValue: Product[], meta, arg) =>
-        baseQueryReturnValue.find((product) => product.id === arg),
+      transformResponse: (product: Product[], meta, arg) =>
+        product.find(({ id }) => id === arg),
     }),
   }),
 });

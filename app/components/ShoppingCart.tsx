@@ -75,6 +75,11 @@ export default function ShoppingCart() {
               vider le panier
             </button>
           )}
+          {products.length === 0 ? null : (
+            <button className="w-full p-2 mt-4 bg-green-500 text-white rounded-lg hover:bg-green-600 dark:bg-green-700 dark:hover:bg-green-800">
+              valider le panier
+            </button>
+          )}
         </div>
       ) : null}
     </div>

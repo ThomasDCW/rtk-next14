@@ -42,6 +42,6 @@ import { NextResponse } from "next/server";
 
 // GET ALL PRODUCTS
 export async function GET(request: Request) {
-  const products = await prisma.product.findMany();
+  const products = await prisma.product.findMany({ orderBy: { id: "asc" } });
   return NextResponse.json(products);
 }
