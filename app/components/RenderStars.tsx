@@ -3,7 +3,7 @@ export default function RenderStars({ rating }: { rating: number }) {
   const emptyStars = 5 - filledStars;
 
   return (
-    <div className="flex items-center mt-2.5 mb-5">
+    <div className="flex items-center">
       {[...Array(filledStars)].map((_, index) => (
         <svg
           key={index}
