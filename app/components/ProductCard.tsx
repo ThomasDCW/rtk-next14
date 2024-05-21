@@ -10,7 +10,7 @@ export default function ProductCard({
 }: Pick<Product, "id" | "title" | "price" | "image">) {
   console.log("ProductCard", id, title, price, image);
   return (
-    <div className="m-2  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="m-2 flex flex-col justify-between bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
         <img className="p-8 rounded-t-lg" src={image} alt="product image" />
       </a>

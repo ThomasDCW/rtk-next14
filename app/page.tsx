@@ -1,7 +1,6 @@
 import { auth } from "./auth";
 import ProductCard from "./components/ProductCard";
 import ShoppingCart from "./components/ShoppingCart";
-
 import { SignIn, SignOut } from "./components/AuthButtons";
 import { Product } from "@prisma/client";
 
@@ -25,13 +24,13 @@ export default async function Home() {
           <h1 className="text-2xl font-bold mt-6 mb-6">
             Bienvenue {session.user.name}
           </h1>
+          <div>
+            <ShoppingCart />
+          </div>
           <div className="p-16 flex flex-wrap justify-around">
             {products.map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}
-          </div>
-          <div>
-            <ShoppingCart />
           </div>
           <SignOut />
         </main>
