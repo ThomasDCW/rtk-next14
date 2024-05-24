@@ -9,11 +9,12 @@ export default function AddToShoppingCartInput({
   id,
   title,
   price,
-}: Pick<Product, "id" | "title" | "price">) {
+  image,
+}: Pick<Product, "id" | "title" | "price" | "image">) {
   const dispatch = useAppDispatch();
   const handleAddToShoppingCart = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(addToCart({ id, price, title }));
+    dispatch(addToCart({ id, price, title, image }));
   };
 
   return (

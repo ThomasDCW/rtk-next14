@@ -1,9 +1,30 @@
 import prisma from "@/lib/prisma";
-import { Product } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-// =========== Mise à plat de l'api dummy JSON =========== //
+// GET ALL PRODUCTS
+export async function GET(request: Request) {
+  const products = await prisma.product.findMany({ orderBy: { id: "asc" } });
+  return NextResponse.json(products);
+}
 
+// =========== Création des produits sur stripe via database =========== //
+// export async function GET(request: Request) {
+//   const products = await prisma.product.findMany();
+//   for (let i = 0; i < products.length; i++) {
+//     await stripe.products.create({
+//       name: products[i].title,
+//       images: [products[i].image],
+//       default_price_data: {
+//         currency: "eur",
+//         unit_amount: products[i].price * 100,
+//       },
+//     });
+//   }
+//   return NextResponse.json({ message: "Products added to Stripe" });
+// }
+// ==================================================================== //
+
+// =========== Mise à plat de l'api dummy JSON =========== //
 // export async function GET(request: Request) {
 //   const response = await fetch("https://dummyjson.com/products");
 //   const data = await response.json();
@@ -39,9 +60,3 @@ import { NextResponse } from "next/server";
 // }
 
 // ======================================================= //
-
-// GET ALL PRODUCTS
-export async function GET(request: Request) {
-  const products = await prisma.product.findMany({ orderBy: { id: "asc" } });
-  return NextResponse.json(products);
-}

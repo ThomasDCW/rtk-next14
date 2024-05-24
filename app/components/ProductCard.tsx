@@ -27,7 +27,12 @@ export default function ProductCard({
           <span className="text-3xl font-bold text-gray-900 dark:text-white">
             ${price}
           </span>
-          <AddToShoppingCartInput id={id} title={title} price={price} />
+          <AddToShoppingCartInput
+            id={id}
+            title={title}
+            price={price}
+            image={image}
+          />
         </div>
       </div>
     </div>

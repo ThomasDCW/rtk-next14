@@ -3,6 +3,7 @@ import React from "react";
 import { reset } from "../lib/features/shoppingCart/shoppingCartSlice";
 import { useAppDispatch, useAppSelector } from "../lib/hook";
 import ProductQuantityInput from "./QuantityInput";
+import Link from "next/link";
 
 export default function ShoppingCart() {
   const dispatch = useAppDispatch();
@@ -76,9 +77,11 @@ export default function ShoppingCart() {
             </button>
           )}
           {products.length === 0 ? null : (
-            <button className="w-full p-2 mt-4 bg-green-500 text-white rounded-lg hover:bg-green-600 dark:bg-green-700 dark:hover:bg-green-800">
-              valider le panier
-            </button>
+            <Link href="/cart">
+              <button className="w-full p-2 mt-4 bg-green-500 text-white rounded-lg hover:bg-green-600 dark:bg-green-700 dark:hover:bg-green-800">
+                valider le panier
+              </button>
+            </Link>
           )}
         </div>
       ) : null}
