@@ -1,8 +1,9 @@
 import { auth } from "./auth";
-import { ProductCard } from "./components/Card";
+import { ProductCard, ProductCardSkeleton } from "./components/Card";
 import ShoppingCart from "./components/ShoppingCart";
 import { SignIn, SignOut } from "./components/AuthButtons";
 import { Product } from "@prisma/client";
+import React from "react";
 
 async function getData() {
   try {
@@ -33,7 +34,12 @@ export default async function Home() {
           </div>
           <div className="p-16 flex flex-wrap justify-around">
             {products.map((product) => (
-              <ProductCard key={product.id} {...product} />
+              <React.Suspense
+                key={product.id}
+                fallback={<ProductCardSkeleton />}
+              >
+                <ProductCard {...product} />
+              </React.Suspense>
             ))}
           </div>
           <SignOut />

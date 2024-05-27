@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from "../lib/hook";
 import ProductQuantityInput from "./QuantityInput";
 import Link from "next/link";
 import Drawer from "./Drawer";
+import Image from "next/image";
+import { CartCard } from "./Card";
 
 export default function ShoppingCart() {
   const dispatch = useAppDispatch();
@@ -20,7 +22,7 @@ export default function ShoppingCart() {
 
   return (
     <div
-      className={`fixed top-3 right-24 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 h-12"
+      className={`fixed top-3 right-24 bg-white border border-gray-200 rounded-lg shadow h-12"
       }`}
       style={{ zIndex: 9999 }}
     >
@@ -51,17 +53,20 @@ export default function ShoppingCart() {
             {products.length === 0 ? (
               <p className="m-2 text-center">Votre panier est vide</p>
             ) : (
-              <ul className="w-full">
+              <ul>
                 {products.map((product) => (
                   <li
                     key={product.id}
-                    className="flex justify-between items-center p-2 border-b border-gray-200 dark:border-gray-700"
+                    className="flex justify-between items-center p-8 border-b border-gray-200"
                   >
-                    <span className="w-1/2 text-start">{product.title}</span>
-                    <span className="w-1/3 text-end">
-                      <ProductQuantityInput quantity={product.quantity!} />
-                    </span>
-                    <span className="w-1/3 text-end">{product.price} €</span>
+                    <CartCard
+                      key={product.id}
+                      quantity={product.quantity!}
+                      id={product.id}
+                      title={product.title}
+                      price={product.price}
+                      image={product.image!}
+                    />
                   </li>
                 ))}
                 <li className="font-bold text-right mt-4">
@@ -70,16 +75,8 @@ export default function ShoppingCart() {
               </ul>
             )}
             {products.length === 0 ? null : (
-              <button
-                onClick={() => dispatch(reset())}
-                className="w-full p-2 mt-4 bg-red-500 text-white rounded-lg hover:bg-red-600 dark:bg-red-700 dark:hover:bg-red-800"
-              >
-                vider le panier
-              </button>
-            )}
-            {products.length === 0 ? null : (
-              <Link href="/cart">
-                <button className="w-full p-2 mt-4 bg-green-500 text-white rounded-lg hover:bg-green-600 dark:bg-green-700 dark:hover:bg-green-800">
+              <Link href="/cart" className="">
+                <button className="mt-4 p-2 mx-auto w-full bg-green-500 text-white rounded-lg">
                   valider le panier
                 </button>
               </Link>
@@ -88,7 +85,10 @@ export default function ShoppingCart() {
         ) : null}
       </Drawer>
       {isOpen && (
-        <div className="overlay">
+        <div
+          className="overlay overflow-y-hidden h-screen w-screen"
+          onClick={() => setIsOpen(false)}
+        >
           {/* Overlay semi-transparent pour assombrir le reste de l'écran */}
         </div>
       )}

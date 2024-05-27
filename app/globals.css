@@ -37,8 +37,8 @@ body {
   top: 0;
   left: 0;
   width: 66.66666%;
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.5); /* Couleur noire semi-transparente */
   z-index: 100; /* Assure que l'overlay est au-dessus du reste du contenu */
-  pointer-events: none; /* Empêche le scrolling de la page sur l'overlay */
 }

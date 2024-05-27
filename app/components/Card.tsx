@@ -46,3 +46,34 @@ export const ProductCard = React.memo(function ProductCard({
     </div>
   );
 });
+
+export const ProductCardSkeleton = () => {
+  return (
+    <div className="w-full h-48 bg-gray-200 rounded-lg animate-pulse"></div>
+  );
+};
+
+export const CartCard = React.memo(function CartCard({
+  id,
+  title,
+  price,
+  image,
+  quantity,
+}: Pick<Product, "id" | "title" | "price" | "image"> & { quantity: number }) {
+  return (
+    <div className="bg-white p-4 border border-gray-200 rounded-lg shadow flex flex-row items-center w-full">
+      <Image
+        width={50}
+        height={50}
+        src={image}
+        alt="product"
+        className="w-24 h-24 object-cover rounded-lg"
+      />
+      <div className="ml-4">
+        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+        <p className="text-gray-700">${price}</p>
+        <p className="text-gray-500">Quantité: {quantity}</p>
+      </div>
+    </div>
+  );
+});
