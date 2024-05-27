@@ -33,9 +33,35 @@ const shoppingCartSlice = createSlice({
         state.products.push({ ...action.payload, quantity: 1 });
       }
     },
+
+    removeFromCart: (state, action: PayloadAction<Product>) => {
+      const existingProductIndex = state.products.findIndex(
+        ({ title }) => title === action.payload.title
+      );
+      if (existingProductIndex !== -1) {
+        state.products[existingProductIndex].quantity! -= 1;
+        state.products[existingProductIndex].price -= action.payload.price;
+      }
+    },
+
+    updateQuantity: (
+      state,
+      action: PayloadAction<{ title: string; quantity: number }>
+    ) => {
+      const { title, quantity } = action.payload;
+      const existingProductIndex = state.products.findIndex(
+        (product) => product.title === title
+      );
+      if (existingProductIndex !== -1) {
+        state.products[existingProductIndex].quantity = quantity;
+        state.products[existingProductIndex].price =
+          state.products[existingProductIndex].price * quantity;
+      }
+    },
   },
 });
 
-export const { addToCart, reset } = shoppingCartSlice.actions;
+export const { addToCart, reset, removeFromCart, updateQuantity } =
+  shoppingCartSlice.actions;
 
 export default shoppingCartSlice.reducer;

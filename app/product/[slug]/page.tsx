@@ -6,7 +6,7 @@ import {
 } from "../../services/products";
 import { useRouter } from "next/navigation";
 import AddToShoppingCartInput from "@/app/components/AddToShoppingCartInput";
-import ProductCard from "@/app/components/ProductCard";
+import ProductCard from "@/app/components/Card";
 import RenderStars from "@/app/components/RenderStars";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {

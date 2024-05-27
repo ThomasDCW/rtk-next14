@@ -1,10 +1,11 @@
-import { UUID } from "crypto";
 import AddToShoppingCartInput from "./AddToShoppingCartInput";
 import { Product } from "@prisma/client";
 import Link from "next/link";
 import RenderStars from "./RenderStars";
+import React from "react";
+import Image from "next/image";
 
-export default function ProductCard({
+export const ProductCard = React.memo(function ProductCard({
   id,
   title,
   price,
@@ -14,7 +15,14 @@ export default function ProductCard({
   return (
     <div className="m-2 flex flex-col justify-between bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <Link href={`/product/${id}`}>
-        <img className="p-8 rounded-t-lg" src={image} alt="product image" />
+        <Image
+          className="p-8 rounded-t-lg"
+          src={image}
+          alt="product image"
+          layout="responsive"
+          width={500}
+          height={500}
+        />
       </Link>
       <div className="px-5 pb-5">
         <Link href={`/product/${id}`}>
@@ -37,4 +45,4 @@ export default function ProductCard({
       </div>
     </div>
   );
-}
+});

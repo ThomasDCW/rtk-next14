@@ -1,15 +1,20 @@
 import { auth } from "./auth";
-import ProductCard from "./components/ProductCard";
+import { ProductCard } from "./components/Card";
 import ShoppingCart from "./components/ShoppingCart";
 import { SignIn, SignOut } from "./components/AuthButtons";
 import { Product } from "@prisma/client";
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/products");
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+  try {
+    const res = await fetch("http://localhost:3000/api/products");
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return res.json() as Promise<Product[]>;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
   }
-  return res.json() as Promise<Product[]>;
 }
 
 export default async function Home() {
