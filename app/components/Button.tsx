@@ -1,6 +1,6 @@
 import { stripe } from "../../lib/stripe";
 
-export default async function BuytButton() {
+export const BuyButton = async () => {
   const paymentLink = await stripe.paymentLinks.create({
     line_items: [
       {
@@ -18,4 +18,4 @@ export default async function BuytButton() {
       </button>
     </a>
   );
-}
+};

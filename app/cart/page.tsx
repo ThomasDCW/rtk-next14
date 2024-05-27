@@ -1,5 +1,6 @@
 "use client";
-import BuyButton from "../components/BuyButton";
+import Image from "next/image";
+import { BuyButton } from "../components/Button";
 import { useAppSelector } from "../lib/hook";
 
 export default function CartPage() {
@@ -33,9 +34,11 @@ export default function CartPage() {
                             className="flex items-center gap-4 font-medium hover:underline"
                           >
                             <div className="aspect-square h-10 w-10 shrink-0">
-                              <img
+                              <Image
+                                width={100}
+                                height={100}
                                 className="h-full w-full"
-                                src={product.image}
+                                src={product.image!}
                                 alt="imac image"
                               />
                             </div>

@@ -54,7 +54,6 @@ export const ProductCardSkeleton = () => {
 };
 
 export const CartCard = React.memo(function CartCard({
-  id,
   title,
   price,
   image,
