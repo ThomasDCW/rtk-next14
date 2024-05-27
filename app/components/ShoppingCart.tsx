@@ -87,6 +87,11 @@ export default function ShoppingCart() {
           </div>
         ) : null}
       </Drawer>
+      {isOpen && (
+        <div className="overlay">
+          {/* Overlay semi-transparent pour assombrir le reste de l'écran */}
+        </div>
+      )}
     </div>
   );
 }
