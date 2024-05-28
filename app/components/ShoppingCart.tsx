@@ -49,18 +49,15 @@ export default function ShoppingCart() {
           {products.reduce((total, product) => total + product.quantity!, 0)}
         </span>
       </div>
-      <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
+      <Drawer title="Panier" isOpen={isOpen} setIsOpen={setIsOpen}>
         {isOpen ? (
-          <div className="mt-4">
+          <div className="">
             {products.length === 0 ? (
               <p className="m-2 text-center">Votre panier est vide</p>
             ) : (
               <ul>
                 {products.map((product) => (
-                  <li
-                    key={product.id}
-                    className="flex justify-between items-center p-8 border-b border-gray-200"
-                  >
+                  <li key={product.id} className="p-2">
                     <CartCard
                       key={product.id}
                       quantity={product.quantity!}

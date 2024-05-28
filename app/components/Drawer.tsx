@@ -1,21 +1,35 @@
-"use client";
-import React from "react";
-
 interface IDrawerProps {
+  title: string;
   children: React.ReactNode;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
 
-export default function Drawer({ children, isOpen, setIsOpen }: IDrawerProps) {
+export default function Drawer({
+  title,
+  children,
+  isOpen,
+  setIsOpen,
+}: IDrawerProps) {
   return (
-    <div>
+    <section>
       {isOpen && (
         <div
-          className={`bg-white p-4 border-l-1 border-gray-300 fixed top-0 right-0 bottom-0 w-1/3 transition-transform duration-1000 transform translate-x-0 ease-in-out overflow-y-auto`}
+          onClick={() => setIsOpen(!isOpen)}
+          className="fixed inset-0 bg-black opacity-30 z-40"
+        ></div>
+      )}
+      <div
+        className={
+          "fixed w-full lg:w-1/3 h-screen right-0 top-0 bg-white shadow-xl delay-400 duration-700 ease-in-out transition-all transform z-50 overflow-y-auto" +
+          (isOpen ? " translate-x-0 " : " translate-x-full ")
+        }
+      >
+        <div
+          className={`bg-white border-l-1 border-gray-300 fixed top-0 right-0 bottom-0 w-full`}
         >
           <button
-            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
+            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center"
             onClick={() => setIsOpen(!isOpen)}
           >
             <svg
@@ -34,20 +48,10 @@ export default function Drawer({ children, isOpen, setIsOpen }: IDrawerProps) {
               />
             </svg>
           </button>
-          <div className="flex flex-col">
-            <span className="text-xl mx-auto">Panier</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="mx-auto">{children}</span>
-          </div>
+          <p className="text-center text-xl mx-auto font-bold p-4">{title}</p>
+          <div className="flex flex-col mx-auto p-4">{children}</div>
         </div>
-      )}
-      {isOpen && (
-        <div
-          className="overlay overflow-y-hidden h-screen w-screen"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-    </div>
+      </div>
+    </section>
   );
 }
