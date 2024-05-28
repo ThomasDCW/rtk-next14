@@ -1,3 +1,6 @@
+import React from "react";
+import classNames from "classnames";
+
 interface IDrawerProps {
   title: string;
   children: React.ReactNode;
@@ -20,14 +23,13 @@ export default function Drawer({
         ></div>
       )}
       <div
-        className={
-          "fixed w-full lg:w-1/3 h-screen right-0 top-0 bg-white shadow-xl delay-400 duration-700 ease-in-out transition-all transform z-50 overflow-y-auto" +
-          (isOpen ? " translate-x-0 " : " translate-x-full ")
-        }
+        className={classNames(
+          "fixed w-full lg:w-1/3 h-screen right-0 top-0 bg-white shadow-xl delay-400 duration-700 ease-in-out transition-all transform z-50 overflow-y-auto",
+          { "translate-x-0": isOpen, "translate-x-full": !isOpen }
+        )}
+        aria-hidden={!isOpen}
       >
-        <div
-          className={`bg-white border-l-1 border-gray-300 fixed top-0 right-0 bottom-0 w-full`}
-        >
+        <div className="bg-white border-l-1 border-gray-300 fixed top-0 right-0 bottom-0 w-full">
           <button
             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center"
             onClick={() => setIsOpen(!isOpen)}
@@ -41,9 +43,9 @@ export default function Drawer({
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
               />
             </svg>
