@@ -42,6 +42,12 @@ export default function Drawer({ children, isOpen, setIsOpen }: IDrawerProps) {
           </div>
         </div>
       )}
+      {isOpen && (
+        <div
+          className="overlay overflow-y-hidden h-screen w-screen"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
     </div>
   );
 }

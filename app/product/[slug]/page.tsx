@@ -6,8 +6,9 @@ import {
 } from "../../services/products";
 import { useRouter } from "next/navigation";
 import AddToShoppingCartInput from "@/app/components/AddToShoppingCartInput";
-import ProductCard from "@/app/components/Card";
+import { ProductCard } from "@/app/components/Card";
 import RenderStars from "@/app/components/RenderStars";
+import Image from "next/image";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const router = useRouter();
@@ -56,7 +57,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     role="tabpanel"
                     aria-labelledby="product-1-image-1-tab"
                   >
-                    <img
+                    <Image
+                      width={100}
+                      height={100}
                       className="w-full mx-auto"
                       src={product.image}
                       alt=""
@@ -68,7 +71,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     role="tabpanel"
                     aria-labelledby="product-1-image-2-tab"
                   >
-                    <img
+                    <Image
+                      width={100}
+                      height={100}
                       className="w-full mx-auto"
                       src={product.image}
                       alt=""
@@ -80,7 +85,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     role="tabpanel"
                     aria-labelledby="product-1-image-3-tab"
                   >
-                    <img
+                    <Image
+                      width={100}
+                      height={100}
                       className="w-full mx-auto"
                       src={product.image}
                       alt=""
@@ -92,7 +99,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     role="tabpanel"
                     aria-labelledby="product-1-image-4-tab"
                   >
-                    <img
+                    <Image
+                      width={100}
+                      height={100}
                       className="w-full mx-auto"
                       src={product.image}
                       alt=""
@@ -118,7 +127,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                       aria-controls="product-1-image-1"
                       aria-selected="false"
                     >
-                      <img
+                      <Image
+                        width={100}
+                        height={100}
                         className="object-contain w-full h-full"
                         src={product.image}
                         alt=""
@@ -135,7 +146,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                       aria-controls="product-1-image-2"
                       aria-selected="false"
                     >
-                      <img
+                      <Image
+                        width={100}
+                        height={100}
                         className="object-contain w-full h-full"
                         src={product.image}
                         alt=""
@@ -152,7 +165,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                       aria-controls="product-1-image-3"
                       aria-selected="false"
                     >
-                      <img
+                      <Image
+                        width={100}
+                        height={100}
                         className="object-contain w-full h-full"
                         src={product.image}
                         alt=""
@@ -169,7 +184,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                       aria-controls="product-1-image-4"
                       aria-selected="false"
                     >
-                      <img
+                      <Image
+                        width={100}
+                        height={100}
                         className="object-contain w-full h-full"
                         src={product.image}
                         alt=""
@@ -285,6 +302,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                       id={product.id}
                       price={product.price}
                       title={product.title}
+                      image={product.image}
                     />
                   </div>
 

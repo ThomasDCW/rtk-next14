@@ -24,7 +24,7 @@ export default function ShoppingCart() {
     <div
       className={`fixed top-3 right-24 bg-white border border-gray-200 rounded-lg shadow h-12"
       }`}
-      style={{ zIndex: 9999 }}
+      style={{ zIndex: 1 }}
     >
       <div className="flex justify-around">
         <svg
@@ -35,7 +35,9 @@ export default function ShoppingCart() {
           height="24"
           fill="currentColor"
           viewBox="0 0 24 24"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
         >
           <path
             fillRule="evenodd"
@@ -84,14 +86,6 @@ export default function ShoppingCart() {
           </div>
         ) : null}
       </Drawer>
-      {isOpen && (
-        <div
-          className="overlay overflow-y-hidden h-screen w-screen"
-          onClick={() => setIsOpen(false)}
-        >
-          {/* Overlay semi-transparent pour assombrir le reste de l'écran */}
-        </div>
-      )}
     </div>
   );
 }
