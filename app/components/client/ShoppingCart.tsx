@@ -1,13 +1,15 @@
 "use client";
-import { useAppSelector } from "../lib/hook";
+import { useAppSelector } from "../../lib/hook";
 import { CartCard } from "./Card";
+// Start of Selection
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Drawer from "./Drawer";
 
 export default function ShoppingCart() {
   const products = useAppSelector(
-    (state) => state.shoppingCartReducer.products
+    (state: { shoppingCartReducer: { products: any[] } }) =>
+      state.shoppingCartReducer.products
   );
   const totalPrice = products.reduce(
     (total, product) => total + product.price,

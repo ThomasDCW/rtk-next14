@@ -1,3 +1,4 @@
+"use client";
 import AddToShoppingCartInput from "./AddToShoppingCartInput";
 import { Product } from "@prisma/client";
 import Link from "next/link";

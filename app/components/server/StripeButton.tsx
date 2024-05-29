@@ -1,4 +1,4 @@
-import { stripe } from "../../lib/stripe";
+import { stripe } from "../../../lib/stripe";
 
 export const BuyButton = async () => {
   const paymentLink = await stripe.paymentLinks.create({

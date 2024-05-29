@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { BuyButton } from "../components/Button";
+import { BuyButton } from "../components/server/StripeButton";
 import { useAppSelector } from "../lib/hook";
 
 export default function CartPage() {

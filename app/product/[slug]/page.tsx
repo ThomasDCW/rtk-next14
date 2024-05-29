@@ -1,13 +1,13 @@
 "use client";
-import ShoppingCart from "@/app/components/ShoppingCart";
+import ShoppingCart from "@/app/components/client/ShoppingCart";
 import {
   useGetProductByIdQuery,
   useGetProductsQuery,
 } from "../../services/products";
 import { useRouter } from "next/navigation";
-import AddToShoppingCartInput from "@/app/components/AddToShoppingCartInput";
-import { ProductCard } from "@/app/components/Card";
-import RenderStars from "@/app/components/RenderStars";
+import AddToShoppingCartInput from "@/app/components/client/AddToShoppingCartInput";
+import { ProductCard } from "@/app/components/client/Card";
+import RenderStars from "@/app/components/client/RenderStars";
 import Image from "next/image";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {

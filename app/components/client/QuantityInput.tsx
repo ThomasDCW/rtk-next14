@@ -1,5 +1,3 @@
-import { useAppDispatch } from "../lib/hook";
-
 export default function ProductQuantityInput({
   quantity,
 }: {

@@ -1,3 +1,5 @@
+"use client";
+
 export default function RenderStars({ rating }: { rating: number }) {
   const filledStars = Math.floor(rating);
   const emptyStars = 5 - filledStars;

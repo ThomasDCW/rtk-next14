@@ -1,4 +1,4 @@
-import { signIn, signOut } from "../auth";
+import { signIn, signOut } from "../../auth";
 
 export function SignIn() {
   return (

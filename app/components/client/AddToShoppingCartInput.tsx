@@ -1,7 +1,7 @@
 "use client";
 import { FormEvent } from "react";
-import { useAppDispatch } from "../lib/hook";
-import { addToCart } from "../lib/features/shoppingCart/shoppingCartSlice";
+import { useAppDispatch } from "../../lib/hook";
+import { addToCart } from "../../lib/features/shoppingCart/shoppingCartSlice";
 import { Product } from "@prisma/client";
 
 export default function AddToShoppingCartInput({
