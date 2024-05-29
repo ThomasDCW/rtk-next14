@@ -3,7 +3,14 @@ import { NextResponse } from "next/server";
 
 // GET ALL PRODUCTS
 export async function GET(request: Request) {
-  const products = await prisma.product.findMany({ orderBy: { id: "asc" } });
+  const { searchParams } = new URL(request.url);
+  const category = searchParams.get("category");
+
+  const products = await prisma.product.findMany({
+    where: category ? { category } : {},
+    orderBy: { id: "asc" },
+  });
+
   return NextResponse.json(products);
 }
 

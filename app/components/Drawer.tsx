@@ -3,17 +3,39 @@ import classNames from "classnames";
 
 interface IDrawerProps {
   title: string;
-  children: React.ReactNode;
+  position?: "right" | "left" | "top" | "bottom";
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  children: React.ReactNode;
 }
 
 export default function Drawer({
   title,
-  children,
+  position,
   isOpen,
   setIsOpen,
+  children,
 }: IDrawerProps) {
+  const right = classNames(
+    "fixed w-full lg:w-1/3 h-screen right-0 top-0 bg-white shadow-xl delay-400 duration-700 ease-in-out transition-all transform z-50 overflow-y-auto rounded-lg rounded-tr-none rounded-br-none",
+    { "translate-x-0": isOpen, "translate-x-full": !isOpen }
+  );
+
+  const left = classNames(
+    "fixed w-full lg:w-1/3 h-screen left-0 top-0 bg-white shadow-xl delay-400 duration-700 ease-in-out transition-all transform z-50 overflow-y-auto rounded-lg rounded-tr-none rounded-br-none",
+    { "translate-x-0": isOpen, "-translate-x-full": !isOpen }
+  );
+
+  const bottom = classNames(
+    "fixed w-full h-1/3 bottom-0 left-0 bg-white shadow-xl delay-400 duration-700 ease-in-out transition-all transform z-50 overflow-y-auto rounded-lg rounded-tr-none rounded-br-none",
+    { "translate-y-0": isOpen, "translate-y-full": !isOpen }
+  );
+
+  const top = classNames(
+    "fixed w-full h-1/3 top-0 left-0 bg-white shadow-xl delay-400 duration-700 ease-in-out transition-all transform z-50 overflow-y-auto rounded-lg rounded-tr-none rounded-br-none",
+    { "translate-y-0": isOpen, "-translate-y-full": !isOpen }
+  );
+
   return (
     <section>
       {isOpen && (
@@ -22,11 +44,19 @@ export default function Drawer({
           className="fixed inset-0 bg-black opacity-30 z-40"
         ></div>
       )}
+
       <div
-        className={classNames(
-          "fixed w-full lg:w-1/3 h-screen right-0 top-0 bg-white shadow-xl delay-400 duration-700 ease-in-out transition-all transform z-50 overflow-y-auto",
-          { "translate-x-0": isOpen, "translate-x-full": !isOpen }
-        )}
+        className={
+          position === "right"
+            ? right
+            : position === "left"
+            ? left
+            : position === "top"
+            ? top
+            : position === "bottom"
+            ? bottom
+            : right
+        }
         aria-hidden={!isOpen}
       >
         <div className="bg-white border-l-1 border-gray-300 fixed top-0 right-0 bottom-0 w-full">

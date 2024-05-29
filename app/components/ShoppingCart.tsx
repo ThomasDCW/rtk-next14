@@ -1,15 +1,11 @@
 "use client";
-import React from "react";
-import { reset } from "../lib/features/shoppingCart/shoppingCartSlice";
-import { useAppDispatch, useAppSelector } from "../lib/hook";
-import ProductQuantityInput from "./QuantityInput";
+import { useAppSelector } from "../lib/hook";
+import { CartCard } from "./Card";
+import { useState } from "react";
 import Link from "next/link";
 import Drawer from "./Drawer";
-import Image from "next/image";
-import { CartCard } from "./Card";
 
 export default function ShoppingCart() {
-  const dispatch = useAppDispatch();
   const products = useAppSelector(
     (state) => state.shoppingCartReducer.products
   );
@@ -18,7 +14,7 @@ export default function ShoppingCart() {
     0
   );
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
