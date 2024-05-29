@@ -4,10 +4,15 @@ import ShoppingCart from "./components/ShoppingCart";
 import { SignIn, SignOut } from "./components/AuthButtons";
 import { Product } from "@prisma/client";
 import React from "react";
+import Link from "next/link";
 
-async function getData() {
+async function getProducts(category?: string) {
+  const url = new URL("http://localhost:3000/api/products");
+  if (category) {
+    url.searchParams.append("category", category);
+  }
   try {
-    const res = await fetch("http://localhost:3000/api/products");
+    const res = await fetch(url.toString());
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
@@ -18,9 +23,23 @@ async function getData() {
   }
 }
 
-export default async function Home() {
+async function getCategories() {
+  const res = await fetch("http://localhost:3000/api/products");
+  const products: Product[] = await res.json();
+  const categories = Array.from(
+    new Set(products.map((product) => product.category))
+  );
+  return categories;
+}
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { category?: string };
+}) {
   const session = await auth();
-  const products = await getData();
+  const products = await getProducts(searchParams.category);
+  const categories = await getCategories();
 
   return (
     <>
@@ -31,6 +50,20 @@ export default async function Home() {
           </h1>
           <div>
             <ShoppingCart />
+          </div>
+          <div className="flex space-x-4 mb-6">
+            <Link href="/" className="btn">
+              All
+            </Link>
+            {categories.map((category) => (
+              <Link
+                key={category}
+                href={`?category=${category}`}
+                className="btn"
+              >
+                {category}
+              </Link>
+            ))}
           </div>
           <div className="p-16 flex flex-wrap justify-around">
             {products.map((product) => (
