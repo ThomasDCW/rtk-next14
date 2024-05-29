@@ -1,7 +1,7 @@
 "use client";
 import { useAppSelector } from "../lib/hook";
 import { CartCard } from "./Card";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Drawer from "./Drawer";
 
@@ -15,6 +15,14 @@ export default function ShoppingCart() {
   );
 
   const [isOpen, setIsOpen] = useState(false);
+  const prevProductsRef = useRef(products);
+
+  useEffect(() => {
+    if (prevProductsRef.current !== products) {
+      setIsOpen(true);
+    }
+    prevProductsRef.current = products;
+  }, [products]);
 
   return (
     <div
