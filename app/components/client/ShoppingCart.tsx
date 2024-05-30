@@ -1,10 +1,10 @@
 "use client";
 import { useAppSelector } from "../../lib/hook";
 import { CartCard } from "./Card";
-// Start of Selection
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Drawer from "./Drawer";
+import { Button } from "flowbite-react";
 
 export default function ShoppingCart() {
   const products = useAppSelector(
@@ -32,18 +32,20 @@ export default function ShoppingCart() {
       }`}
       style={{ zIndex: 1 }}
     >
-      <div className="flex justify-around">
+      <Button
+        className="flex justify-around"
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+      >
         <svg
-          className="w-10 h-6 m-2 text-gray-800 dark:text-white hover:cursor-pointer"
+          className="text-gray-800 dark:text-white hover:cursor-pointer"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
           fill="currentColor"
           viewBox="0 0 24 24"
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
         >
           <path
             fillRule="evenodd"
@@ -54,7 +56,7 @@ export default function ShoppingCart() {
         <span className="bg-red-500 text-white rounded-full px-2 py-1 text-xs absolute -top-2 -right-2">
           {products.reduce((total, product) => total + product.quantity!, 0)}
         </span>
-      </div>
+      </Button>
       <Drawer title="Panier" isOpen={isOpen} setIsOpen={setIsOpen}>
         {isOpen ? (
           <div className="">

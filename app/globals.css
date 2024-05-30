@@ -42,3 +42,13 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: -1;
 }
+
+.new-gradient {
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  color: gray;
+}

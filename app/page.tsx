@@ -45,6 +45,7 @@ export default async function Home({
           <h1 className="text-2xl font-bold mt-6 mb-6">
             Bienvenue {session.user.name}
           </h1>
+          <Link href={"/immat"}>immat</Link>
           <ShoppingCart />
           <CategoryFilter categories={categories} />
           <div className="p-16 flex flex-wrap justify-around">
