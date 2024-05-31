@@ -19,6 +19,61 @@ model Product {
   thumbnail          String
   image              String
 }
+
+model Part {
+  id                    String   @id @default(cuid())
+  code                  String
+  label                 String
+  quality               String
+  year                  Int
+  CNIT                  String
+  description           String
+  OERef                 String
+  comments              String?
+  engineType            String?
+  engineCode            String?
+  boxType               String?
+  boxCode               String?
+  autoManu              String?
+  storage               String
+  dismantled            Boolean
+  barcode               String
+  images                String[]
+  exVatPrice            Float
+  exVatShippingCost     Float
+  shippingCostCategory  Int
+  brand                 String
+  model                 String
+  phase                 String
+  version               String
+  energy                String
+  power                 Int
+  DINPower              Int
+  mileage               Int
+  color                 String
+  policeNb              String
+  doors                 Int
+  engineSize            Int
+  firstRegistrationDate DateTime
+  registration          String
+  identifier            String
+  AMRef                 String?
+  lueRef                String?
+  PRECode               String?
+  manufacturerPrice     Float
+  weight                Float
+  family                String
+  subFamily             String
+  partType              String
+  VIN                   String?
+  Ktype                 String?
+  publishable           Boolean
+  status                String
+  updatedRef            String?
+  excluded              Boolean
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
  
 model User {
   id            String          @id @default(cuid())
