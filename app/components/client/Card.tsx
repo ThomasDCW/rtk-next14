@@ -1,10 +1,34 @@
 "use client";
 import AddToShoppingCartInput from "./AddToShoppingCartInput";
-import { Product } from "@prisma/client";
+import { Part, Product } from "@prisma/client";
 import Link from "next/link";
 import RenderStars from "./RenderStars";
 import React from "react";
 import Image from "next/image";
+import { Card } from "flowbite-react";
+
+export const PartCard = React.memo(function PartCard({
+  id,
+  quality,
+  label,
+  images,
+}: Pick<Part, "id" | "quality" | "label" | "images">) {
+  return (
+    <Card
+      key={id}
+      className="max-w-sm"
+      imgAlt="Meaningful alt text for an image that is not purely decorative"
+      imgSrc={images[0]}
+    >
+      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        {label}
+      </h5>
+      <p className="font-normal text-gray-700 dark:text-gray-400">
+        qualité : {quality}
+      </p>
+    </Card>
+  );
+});
 
 export const ProductCard = React.memo(function ProductCard({
   id,

@@ -33,6 +33,7 @@ export default function ShoppingCart() {
       style={{ zIndex: 1 }}
     >
       <Button
+        gradientDuoTone="redToYellow"
         className="flex justify-around"
         onClick={() => {
           setIsOpen(!isOpen);

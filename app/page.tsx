@@ -45,6 +45,9 @@ export default async function Home({
           <Link className="text-blue-500 hover:underline" href={"/immat"}>
             immat
           </Link>
+          <Link className="text-blue-500 hover:underline" href={"/parts"}>
+            Parts
+          </Link>
           <h1 className="text-2xl font-bold mt-6 mb-6">
             Bienvenue {session.user.name}
           </h1>
