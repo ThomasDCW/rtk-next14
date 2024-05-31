@@ -16,8 +16,7 @@ export default function Sandbox() {
             icon={FaCar}
             className="h-full"
           >
-            <div className="flex flex-col h-64 p-4">
-              <p className="mb-2">Immatriculation</p>
+            <div className="flex flex-col h-64 items-center justify-center">
               <ImmatInput />
             </div>
           </Tabs.Item>
@@ -26,7 +25,7 @@ export default function Sandbox() {
             icon={IoDocumentTextSharp}
           >
             <div className="flex flex-col items-center h-64">
-              <h1>Carte grise</h1>
+              <h1>Carte grise</h1>{" "}
             </div>
           </Tabs.Item>
         </Tabs>

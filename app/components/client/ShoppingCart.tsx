@@ -8,9 +8,9 @@ import { Button } from "flowbite-react";
 
 export default function ShoppingCart() {
   const products = useAppSelector(
-    (state: { shoppingCartReducer: { products: any[] } }) =>
-      state.shoppingCartReducer.products
+    (state) => state.shoppingCartReducer.products
   );
+
   const totalPrice = products.reduce(
     (total, product) => total + product.price,
     0
