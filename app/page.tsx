@@ -42,21 +42,25 @@ export default async function Home({
     <>
       {session?.user ? (
         <main className="flex min-h-screen flex-col items-center">
+          <Link className="text-blue-500 hover:underline" href={"/immat"}>
+            immat
+          </Link>
           <h1 className="text-2xl font-bold mt-6 mb-6">
             Bienvenue {session.user.name}
           </h1>
-          <Link href={"/immat"}>immat</Link>
-          <ShoppingCart />
-          <CategoryFilter categories={categories} />
-          <div className="p-16 flex flex-wrap justify-around">
-            {products.map((product) => (
-              <React.Suspense
-                key={product.id}
-                fallback={<ProductCardSkeleton />}
-              >
-                <ProductCard {...product} />
-              </React.Suspense>
-            ))}
+          <div className="flex flex-row">
+            <ShoppingCart />
+            <CategoryFilter categories={categories} />
+            <div className="p-16 flex flex-wrap justify-around">
+              {products.map((product) => (
+                <React.Suspense
+                  key={product.id}
+                  fallback={<ProductCardSkeleton />}
+                >
+                  <ProductCard {...product} />
+                </React.Suspense>
+              ))}
+            </div>
           </div>
           <SignOut />
         </main>

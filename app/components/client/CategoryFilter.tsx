@@ -12,7 +12,7 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
   const selectedCategory = searchParams.get("category");
 
   return (
-    <div className="flex flex-col space-y-4 mb-6">
+    <div className="flex flex-col space-y-4 mb-6 p-5">
       <Link href="/" className="text-blue-500 hover:underline">
         All
       </Link>
